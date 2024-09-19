@@ -1,6 +1,7 @@
 class Employee:
     # information
-    def __init__(self, fio, salary, stage, level, grade):
+    def __init__(self, fio, salary, stage, level, grade, status):
+        self.status = status  # статус
         self._fio = fio  # фио
         self._salary = salary  # рубли
         self._stage = stage  # месяц
@@ -16,7 +17,7 @@ class Employee:
         print(f"{clear__salary}$")
 
     def get_info(self):  # получить информацию
-        print(f"Name - {self._fio}\n  Salary - {self._salary}$\n"
+        print(f"Status - {self.status}\nName - {self._fio}\n  Salary - {self._salary}$\n"
               f"  Stage - {self._stage} Month\n  Level - {self._level}\n"
               f"  Grade - {self._grade}")
         if self.__class__ != Hired:
@@ -40,22 +41,18 @@ class Employee:
 
 
 class Hired(Employee):
-    def __init__(self, fio, salary, stage, level, grade, company, hired_time):
-        Employee.__init__(self, fio, salary, stage, level, grade)
+    def __init__(self, fio, salary, stage, level, grade, company, hired_time, status):
+        Employee.__init__(self, fio, salary, stage, level, grade, status)
         self.__company = company  # protected
         self.__hired_time = hired_time  # protected
 
     def get_info(self):
-        print(f"Company - {self.__company}\nHired for {self.__hired_time} month")
         Employee.get_info(self)
-        print(f"\n")
+        print(f"  Company - {self.__company}\n  Hired for {self.__hired_time} month\n")
 
 
-emp_1 = Employee("Omega Dreemurr", 2000, 64, "Senior", "Manager")
-emp_2 = Employee("Ivanov Ivan", 1350, 35, "Middle", "Team Leader")
-emp_3 = Employee("Simonov Dmitryi", 900, 13, "Junior", "C++ Devoleper")
-emp_4 = Hired("Kornev Roman", 900, 12, "Junior", "Py Devoleper", "Alpha", "24")
-emp_5 = Hired("Joseph Jostar", 900, 11, "Junior", "Js Devoleper", "Delta", "12")
-
-emp_1.get_info()
-emp_4.get_info()
+emp_1 = Employee("Omega Dreemurr", 2000, 64, "Senior", "Manager", "Employer")
+emp_2 = Employee("Ivanov Ivan", 1350, 35, "Middle", "Team Leader", "Employer")
+emp_3 = Employee("Simonov Dmitryi", 900, 13, "Junior", "C++ Devoleper", "Employer")
+emp_4 = Hired("Kornev Roman", 900, 12, "Junior", "Py Devoleper", "Alpha", "24", "Hired")
+emp_5 = Hired("Joseph Jostar", 900, 11, "Junior", "Js Devoleper", "Delta", "12", "Hired")
