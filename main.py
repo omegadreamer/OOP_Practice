@@ -35,9 +35,12 @@ class Employee:
                 print(f"{self._grade} grade of {self._fio} wasn't changed")
 
     # выдать
-    def __give_prize(self):  # give prize | protected function
-        self.__prize = True
-        print(f"prem for {self._fio} was gived")
+    def give_prize(self):  # give prize | protected function
+        if self.__class__ == Employee:
+            self.__prize = True
+            print(f"prize for {self._fio} was gived")
+        else:
+            print(f"You cant give prize for hired employer")
 
 
 class Hired(Employee):
