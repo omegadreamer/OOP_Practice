@@ -1,42 +1,42 @@
 class Employee:
     # information
     def __init__(self, fio, salary, stage, level, grade):
-        self.fio = fio  # фио
-        self.salary = salary  # рубли
-        self.stage = stage  # месяц
-        self.level = level  # уровень
-        self.grade = grade  # должность
+        self._fio = fio  # фио
+        self._salary = salary  # рубли
+        self._stage = stage  # месяц
+        self._level = level  # уровень
+        self._grade = grade  # должность
         self.__prize = False  # премия
 
     # получить
-    def get_clear_salary(self):  # получить зарплату чистыми
-        clear_salary = round(self.salary * 0.8)
+    def get_clear__salary(self):  # получить зарплату чистыми
+        clear__salary = round(self._salary * 0.8)
         if self.__prize:
-            clear_salary += 10000
-        print(f"{clear_salary}$")
+            clear__salary += 10000
+        print(f"{clear__salary}$")
 
     def get_info(self):  # получить информацию
-        print(f"Name - {self.fio}\n  Salary - {self.salary}$\n"
-              f"  Stage - {self.stage} Month\n  Level - {self.level}\n"
-              f"  Grade - {self.grade}")
+        print(f"Name - {self._fio}\n  Salary - {self._salary}$\n"
+              f"  Stage - {self._stage} Month\n  Level - {self._level}\n"
+              f"  Grade - {self._grade}")
         if self.__class__ != Hired:
             print(f"  Prize - {self.__prize}\n")
 
     # изменить
     def set_grade(self):
-        old_grade = self.grade
-        new_grade = input(f"* To get back enter clear string\nInput new grade: ")
+        old_grade = self._grade
+        new_grade = input(f"* To get back enter clear string\nInput new _grade: ")
         if new_grade != "":
             if new_grade != old_grade:
-                self.grade = new_grade
-                print(f"{old_grade} grade of {self.fio} was changed to {self.grade}")
+                self._grade = new_grade
+                print(f"{old_grade} grade of {self._fio} was changed to {self._grade}")
             else:
-                print(f"{self.grade} grade of {self.fio} wasn't changed")
+                print(f"{self._grade} grade of {self._fio} wasn't changed")
 
     # выдать
     def __give_prize(self):  # give prize | protected function
         self.__prize = True
-        print(f"prem for {self.fio} was gived")
+        print(f"prem for {self._fio} was gived")
 
 
 class Hired(Employee):
